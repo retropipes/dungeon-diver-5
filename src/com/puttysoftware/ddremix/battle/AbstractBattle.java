@@ -14,7 +14,7 @@ import com.puttysoftware.ddremix.maze.objects.BattleCharacter;
 public abstract class AbstractBattle {
     // Constructors
     protected AbstractBattle() {
-        // Do nothing
+	// Do nothing
     }
 
     // Generic Methods
@@ -67,8 +67,7 @@ public abstract class AbstractBattle {
 
     public abstract void arrowDone(BattleCharacter hit);
 
-    public abstract void redrawOneBattleSquare(int x, int y,
-            AbstractMazeObject obj3);
+    public abstract void redrawOneBattleSquare(int x, int y, AbstractMazeObject obj3);
 
     public abstract boolean isWaitingForAI();
 }

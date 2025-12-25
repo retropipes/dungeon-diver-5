@@ -16,53 +16,51 @@ import com.puttysoftware.ddremix.resourcemanagers.SoundManager;
 public class TabletSlot extends AbstractWall {
     // Constructors
     public TabletSlot() {
-        super();
+	super();
     }
 
     @Override
     public String getName() {
-        return "Tablet Slot";
+	return "Tablet Slot";
     }
 
     @Override
     public String getPluralName() {
-        return "Tablet Slots";
+	return "Tablet Slots";
     }
 
     @Override
     public String getDescription() {
-        return "Tablet Slots can be opened with Tablets.";
+	return "Tablet Slots can be opened with Tablets.";
     }
 
     @Override
     public int getBaseID() {
-        return ObjectImageConstants.OBJECT_IMAGE_TABLET_SLOT;
+	return ObjectImageConstants.OBJECT_IMAGE_TABLET_SLOT;
     }
 
     @Override
     protected void setTypes() {
-        this.type.set(TypeConstants.TYPE_WALL);
+	this.type.set(TypeConstants.TYPE_WALL);
     }
 
     @Override
-    public boolean preMoveAction(final boolean ie, final int dirX,
-            final int dirY) {
-        final Maze m = DDRemix.getApplication().getMazeManager().getMaze();
-        if (m.getTablets() > 0) {
-            m.useTablet();
-            SoundManager.playSound(SoundConstants.SOUND_UNLOCK);
-            m.setCell(new Empty(), dirX, dirY, 0, this.getLayer());
-            return true;
-        }
-        return false;
+    public boolean preMoveAction(final boolean ie, final int dirX, final int dirY) {
+	final Maze m = DDRemix.getApplication().getMazeManager().getMaze();
+	if (m.getTablets() > 0) {
+	    m.useTablet();
+	    SoundManager.playSound(SoundConstants.SOUND_UNLOCK);
+	    m.setCell(new Empty(), dirX, dirY, 0, this.getLayer());
+	    return true;
+	}
+	return false;
     }
 
     @Override
-    public void postMoveAction(final boolean ie, final int dirX,
-            final int dirY) {
-        final Maze m = DDRemix.getApplication().getMazeManager().getMaze();
-        if (m.getTablets() == 0) {
-            super.postMoveAction(ie, dirX, dirY);
-        }
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY) {
+	final Maze m = DDRemix.getApplication().getMazeManager().getMaze();
+	if (m.getTablets() == 0) {
+	    super.postMoveAction(ie, dirX, dirY);
+	}
     }
 }

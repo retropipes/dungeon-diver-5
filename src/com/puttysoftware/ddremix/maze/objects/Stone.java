@@ -16,54 +16,53 @@ import com.puttysoftware.ddremix.resourcemanagers.SoundManager;
 public class Stone extends AbstractItem {
     // Constructors
     public Stone() {
-        super();
+	super();
     }
 
     @Override
     public int getBaseID() {
-        return ObjectImageConstants.OBJECT_IMAGE_STONE;
+	return ObjectImageConstants.OBJECT_IMAGE_STONE;
     }
 
     @Override
     public String getName() {
-        return "Stone";
+	return "Stone";
     }
 
     @Override
     public String getPluralName() {
-        return "Stones";
+	return "Stones";
     }
 
     @Override
     public String getDescription() {
-        return "Stones exist to be collected.";
+	return "Stones exist to be collected.";
     }
 
     @Override
-    public void postMoveAction(final boolean ie, final int dirX,
-            final int dirY) {
-        DDRemix.getApplication().getMazeManager().getMaze().addStone();
-        SoundManager.playSound(SoundConstants.SOUND_STONE);
-        GameLogicManager.decay();
-        DDRemix.getApplication().getGameManager().checkStoneCount();
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY) {
+	DDRemix.getApplication().getMazeManager().getMaze().addStone();
+	SoundManager.playSound(SoundConstants.SOUND_STONE);
+	GameLogicManager.decay();
+	DDRemix.getApplication().getGameManager().checkStoneCount();
     }
 
     @Override
     public int getMinimumRequiredQuantity(final Maze maze) {
-        final int base = maze.getRows();
-        final int flux = base / 8;
-        return base - flux;
+	final int base = maze.getRows();
+	final int flux = base / 8;
+	return base - flux;
     }
 
     @Override
     public int getMaximumRequiredQuantity(final Maze maze) {
-        final int base = maze.getRows();
-        final int flux = base / 8;
-        return base + flux;
+	final int base = maze.getRows();
+	final int flux = base / 8;
+	return base + flux;
     }
 
     @Override
     public boolean isRequired() {
-        return true;
+	return true;
     }
 }

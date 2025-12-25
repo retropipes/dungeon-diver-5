@@ -14,31 +14,28 @@ import org.retropipes.diane.fileio.utility.ResourceStreamReader;
 import com.puttysoftware.ddremix.DDRemix;
 
 public class MonsterDataManager {
-    public static String[] getMonsterData(final int level,
-            final boolean display) {
-        String extraPath;
-        if (display) {
-            extraPath = "display/";
-        } else {
-            extraPath = "file/";
-        }
-        try (final ResourceStreamReader rsr = new ResourceStreamReader(
-                MonsterDataManager.class.getResourceAsStream(
-                        "/com/puttysoftware/ddremix/resources/data/monsters/"
-                                + extraPath + "level" + level + ".txt"))) {
-            // Fetch data
-            final ArrayList<String> rawData = new ArrayList<>();
-            String line = "";
-            while (line != null) {
-                line = rsr.readString();
-                if (line != null) {
-                    rawData.add(line);
-                }
-            }
-            return rawData.toArray(new String[rawData.size()]);
-        } catch (final IOException e) {
-            DDRemix.logError(e);
-            return null;
-        }
+    public static String[] getMonsterData(final int level, final boolean display) {
+	String extraPath;
+	if (display) {
+	    extraPath = "display/";
+	} else {
+	    extraPath = "file/";
+	}
+	try (final ResourceStreamReader rsr = new ResourceStreamReader(MonsterDataManager.class.getResourceAsStream(
+		"/com/puttysoftware/ddremix/resources/data/monsters/" + extraPath + "level" + level + ".txt"))) {
+	    // Fetch data
+	    final ArrayList<String> rawData = new ArrayList<>();
+	    String line = "";
+	    while (line != null) {
+		line = rsr.readString();
+		if (line != null) {
+		    rawData.add(line);
+		}
+	    }
+	    return rawData.toArray(new String[rawData.size()]);
+	} catch (final IOException e) {
+	    DDRemix.logError(e);
+	    return null;
+	}
     }
 }

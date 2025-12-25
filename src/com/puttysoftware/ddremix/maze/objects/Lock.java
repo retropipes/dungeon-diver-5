@@ -16,53 +16,51 @@ import com.puttysoftware.ddremix.resourcemanagers.SoundManager;
 public class Lock extends AbstractWall {
     // Constructors
     public Lock() {
-        super();
+	super();
     }
 
     @Override
     public String getName() {
-        return "Lock";
+	return "Lock";
     }
 
     @Override
     public String getPluralName() {
-        return "Locks";
+	return "Locks";
     }
 
     @Override
     public String getDescription() {
-        return "Locks can be opened with Keys.";
+	return "Locks can be opened with Keys.";
     }
 
     @Override
     public int getBaseID() {
-        return ObjectImageConstants.OBJECT_IMAGE_LOCK;
+	return ObjectImageConstants.OBJECT_IMAGE_LOCK;
     }
 
     @Override
     protected void setTypes() {
-        this.type.set(TypeConstants.TYPE_WALL);
+	this.type.set(TypeConstants.TYPE_WALL);
     }
 
     @Override
-    public boolean preMoveAction(final boolean ie, final int dirX,
-            final int dirY) {
-        final Maze m = DDRemix.getApplication().getMazeManager().getMaze();
-        if (m.getKeys() > 0) {
-            m.useKey();
-            SoundManager.playSound(SoundConstants.SOUND_UNLOCK);
-            m.setCell(new Empty(), dirX, dirY, 0, this.getLayer());
-            return true;
-        }
-        return false;
+    public boolean preMoveAction(final boolean ie, final int dirX, final int dirY) {
+	final Maze m = DDRemix.getApplication().getMazeManager().getMaze();
+	if (m.getKeys() > 0) {
+	    m.useKey();
+	    SoundManager.playSound(SoundConstants.SOUND_UNLOCK);
+	    m.setCell(new Empty(), dirX, dirY, 0, this.getLayer());
+	    return true;
+	}
+	return false;
     }
 
     @Override
-    public void postMoveAction(final boolean ie, final int dirX,
-            final int dirY) {
-        final Maze m = DDRemix.getApplication().getMazeManager().getMaze();
-        if (m.getKeys() == 0) {
-            super.postMoveAction(ie, dirX, dirY);
-        }
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY) {
+	final Maze m = DDRemix.getApplication().getMazeManager().getMaze();
+	if (m.getKeys() == 0) {
+	    super.postMoveAction(ie, dirX, dirY);
+	}
     }
 }

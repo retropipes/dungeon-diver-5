@@ -11,15 +11,14 @@ import com.puttysoftware.ddremix.maze.Maze;
 
 public class MonsterFactory {
     private MonsterFactory() {
-        // Do nothing
+	// Do nothing
     }
 
     public static AbstractCreature getNewMonsterInstance() {
-        if (PartyManager.getParty().getDungeonLevel() == Maze.getMaxLevels()
-                - 1) {
-            return new BossMonster();
-        } else {
-            return new BothRandomScalingStaticMonster();
-        }
+	if (PartyManager.getParty().getDungeonLevel() == Maze.getMaxLevels() - 1) {
+	    return new BossMonster();
+	} else {
+	    return new BothRandomScalingStaticMonster();
+	}
     }
 }

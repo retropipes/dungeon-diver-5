@@ -16,64 +16,62 @@ import com.puttysoftware.ddremix.resourcemanagers.SoundManager;
 public class Exit extends AbstractWall {
     // Constructors
     public Exit() {
-        super();
+	super();
     }
 
     @Override
     public int getBaseID() {
-        return ObjectImageConstants.OBJECT_IMAGE_EXIT;
+	return ObjectImageConstants.OBJECT_IMAGE_EXIT;
     }
 
     // Scriptability
     @Override
     public String getName() {
-        return "Exit";
+	return "Exit";
     }
 
     @Override
     public String getPluralName() {
-        return "Exits";
+	return "Exits";
     }
 
     @Override
     public String getDescription() {
-        return "Exits seal the way forward.";
+	return "Exits seal the way forward.";
     }
 
     @Override
-    public boolean preMoveAction(final boolean ie, final int dirX,
-            final int dirY) {
-        final Maze m = DDRemix.getApplication().getMazeManager().getMaze();
-        if (m.getHammers() > 0) {
-            m.useHammer();
-            SoundManager.playSound(SoundConstants.SOUND_UNLOCK);
-            m.setCell(new StairsDown(), dirX, dirY, 0, this.getLayer());
-            return true;
-        }
-        return false;
+    public boolean preMoveAction(final boolean ie, final int dirX, final int dirY) {
+	final Maze m = DDRemix.getApplication().getMazeManager().getMaze();
+	if (m.getHammers() > 0) {
+	    m.useHammer();
+	    SoundManager.playSound(SoundConstants.SOUND_UNLOCK);
+	    m.setCell(new StairsDown(), dirX, dirY, 0, this.getLayer());
+	    return true;
+	}
+	return false;
     }
 
     @Override
-    public void postMoveAction(final boolean ie, final int dirX,
-            final int dirY) {
-        final Maze m = DDRemix.getApplication().getMazeManager().getMaze();
-        if (m.getHammers() == 0) {
-            super.postMoveAction(ie, dirX, dirY);
-        }
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY) {
+	final Maze m = DDRemix.getApplication().getMazeManager().getMaze();
+	if (m.getHammers() == 0) {
+	    super.postMoveAction(ie, dirX, dirY);
+	}
     }
 
     @Override
     public int getMinimumRequiredQuantity(final Maze maze) {
-        return PartyManager.getParty().getDungeonLevel() + 1;
+	return PartyManager.getParty().getDungeonLevel() + 1;
     }
 
     @Override
     public int getMaximumRequiredQuantity(final Maze maze) {
-        return PartyManager.getParty().getDungeonLevel() + 1;
+	return PartyManager.getParty().getDungeonLevel() + 1;
     }
 
     @Override
     public boolean isRequired() {
-        return true;
+	return true;
     }
 }

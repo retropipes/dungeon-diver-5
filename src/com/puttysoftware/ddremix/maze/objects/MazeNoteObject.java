@@ -11,26 +11,26 @@ import com.puttysoftware.ddremix.resourcemanagers.ObjectImageConstants;
 public class MazeNoteObject extends AbstractMarker {
     // Constructors
     public MazeNoteObject() {
-        super();
+	super();
     }
 
     @Override
     public int getBaseID() {
-        return ObjectImageConstants.OBJECT_IMAGE_NOTE;
+	return ObjectImageConstants.OBJECT_IMAGE_NOTE;
     }
 
     @Override
     public String getName() {
-        return "Maze Note";
+	return "Maze Note";
     }
 
     @Override
     public String getPluralName() {
-        return "Maze Notes";
+	return "Maze Notes";
     }
 
     @Override
     public String getDescription() {
-        return "";
+	return "";
     }
 }

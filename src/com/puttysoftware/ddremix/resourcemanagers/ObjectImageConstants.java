@@ -50,14 +50,13 @@ public class ObjectImageConstants {
     public static final int OBJECT_IMAGE_WALL_ON = 46;
     public static final int OBJECT_IMAGE_WARP_TRAP = 47;
     public static final int OBJECT_IMAGE_WEAPONS_SHOP = 48;
-    private static final String[] OBJECT_IMAGE_NAMES = GraphicsDataManager
-            .getObjectGraphicsData();
+    private static final String[] OBJECT_IMAGE_NAMES = GraphicsDataManager.getObjectGraphicsData();
 
     static String getObjectImageName(final int ID) {
-        if (ID == ObjectImageConstants.OBJECT_IMAGE_NONE) {
-            return "";
-        } else {
-            return ObjectImageConstants.OBJECT_IMAGE_NAMES[ID];
-        }
+	if (ID == ObjectImageConstants.OBJECT_IMAGE_NONE) {
+	    return "";
+	} else {
+	    return ObjectImageConstants.OBJECT_IMAGE_NAMES[ID];
+	}
     }
 }

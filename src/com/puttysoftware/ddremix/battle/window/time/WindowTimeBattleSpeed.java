@@ -13,12 +13,11 @@ class WindowTimeBattleSpeed {
 
     // Constructor
     private WindowTimeBattleSpeed() {
-        // Do nothing
+	// Do nothing
     }
 
     // Method
     static int getSpeed() {
-        return PreferencesManager.getBattleSpeed()
-                / WindowTimeBattleSpeed.SPEED_FACTOR;
+	return PreferencesManager.getBattleSpeed() / WindowTimeBattleSpeed.SPEED_FACTOR;
     }
 }

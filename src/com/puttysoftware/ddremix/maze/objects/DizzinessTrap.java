@@ -15,30 +15,28 @@ import com.puttysoftware.ddremix.resourcemanagers.SoundManager;
 public class DizzinessTrap extends AbstractTrap {
     // Constructors
     public DizzinessTrap() {
-        super(ObjectImageConstants.OBJECT_IMAGE_DIZZINESS_TRAP);
+	super(ObjectImageConstants.OBJECT_IMAGE_DIZZINESS_TRAP);
     }
 
     @Override
     public String getName() {
-        return "Dizziness Trap";
+	return "Dizziness Trap";
     }
 
     @Override
     public String getPluralName() {
-        return "Dizziness Traps";
+	return "Dizziness Traps";
     }
 
     @Override
-    public void postMoveAction(final boolean ie, final int dirX,
-            final int dirY) {
-        DDRemix.getApplication().showMessage("You feel dizzy!");
-        DDRemix.getApplication().getGameManager()
-                .activateEffect(MazeEffectConstants.EFFECT_DIZZY);
-        SoundManager.playSound(SoundConstants.SOUND_DIZZY);
+    public void postMoveAction(final boolean ie, final int dirX, final int dirY) {
+	DDRemix.getApplication().showMessage("You feel dizzy!");
+	DDRemix.getApplication().getGameManager().activateEffect(MazeEffectConstants.EFFECT_DIZZY);
+	SoundManager.playSound(SoundConstants.SOUND_DIZZY);
     }
 
     @Override
     public String getDescription() {
-        return "Dizziness Traps randomly alter your controls each step for 3 steps when stepped on.";
+	return "Dizziness Traps randomly alter your controls each step for 3 steps when stepped on.";
     }
 }

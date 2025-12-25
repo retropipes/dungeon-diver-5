@@ -13,6 +13,6 @@ public class MazeConstants {
     public static final int MAZE_SIZE_INCREMENT = 10;
 
     private MazeConstants() {
-        // Do nothing
+	// Do nothing
     }
 }

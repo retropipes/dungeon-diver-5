@@ -18,30 +18,29 @@ public class SoundManager {
     private static Class<?> LOAD_CLASS = SoundManager.class;
 
     private static WAVFactory getSound(final String filename) {
-        try {
-            final URL url = SoundManager.LOAD_CLASS.getResource(
-                    SoundManager.LOAD_PATH + filename.toLowerCase() + ".wav");
-            return WAVFactory.getNonLoopingResource(url);
-        } catch (final NullPointerException np) {
-            return null;
-        }
+	try {
+	    final URL url = SoundManager.LOAD_CLASS
+		    .getResource(SoundManager.LOAD_PATH + filename.toLowerCase() + ".wav");
+	    return WAVFactory.getNonLoopingResource(url);
+	} catch (final NullPointerException np) {
+	    return null;
+	}
     }
 
     public static void playSound(final int soundID) {
-        try {
-            if (PreferencesManager.getSoundsEnabled()) {
-                int offset = 0;
-                if (soundID == SoundConstants.SOUND_WALK) {
-                    final RandomRange rSound = new RandomRange(0, 2);
-                    offset = rSound.generate();
-                }
-                final String soundName = SoundConstants
-                        .getSoundName(soundID + offset);
-                final WAVFactory snd = SoundManager.getSound(soundName);
-                snd.start();
-            }
-        } catch (final ArrayIndexOutOfBoundsException aioob) {
-            // Do nothing
-        }
+	try {
+	    if (PreferencesManager.getSoundsEnabled()) {
+		int offset = 0;
+		if (soundID == SoundConstants.SOUND_WALK) {
+		    final RandomRange rSound = new RandomRange(0, 2);
+		    offset = rSound.generate();
+		}
+		final String soundName = SoundConstants.getSoundName(soundID + offset);
+		final WAVFactory snd = SoundManager.getSound(soundName);
+		snd.start();
+	    }
+	} catch (final ArrayIndexOutOfBoundsException aioob) {
+	    // Do nothing
+	}
     }
 }
