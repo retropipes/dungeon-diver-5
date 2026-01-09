@@ -8,22 +8,21 @@ package com.puttysoftware.ddremix.resourcemanagers;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.BufferUnderflowException;
 
+import org.retropipes.diane.asset.music.DianeMusicPlayer;
 import org.retropipes.diane.fileio.utility.FileUtilities;
 
 import com.puttysoftware.ddremix.DDRemix;
 import com.puttysoftware.ddremix.maze.Extension;
 import com.puttysoftware.ddremix.maze.Maze;
-import com.puttysoftware.micromod.MicroMod;
 
 public class MusicManager {
     private static final String DEFAULT_LOAD_PATH = "/com/puttysoftware/ddremix/resources/music/";
     private static String LOAD_PATH = MusicManager.DEFAULT_LOAD_PATH;
     private static Class<?> LOAD_CLASS = MusicManager.class;
-    private static MicroMod CURRENT_MUSIC;
 
-    private static MicroMod getMusic(final String filename) {
+    public static void playMusic(final int musicID) {
+	String filename = MusicConstants.getMusicName(musicID);
 	try {
 	    final File modFile = new File(Maze.getMazeTempFolder() + File.separator + "MusicTemp" + File.separator
 		    + filename + Extension.getMusicExtensionWithPeriod());
@@ -38,47 +37,19 @@ public class MusicManager {
 		try (final InputStream is = MusicManager.LOAD_CLASS.getResourceAsStream(
 			MusicManager.LOAD_PATH + filename + Extension.getMusicExtensionWithPeriod())) {
 		    FileUtilities.copyRAMFile(is, modFile);
+		    DianeMusicPlayer.playStream(is);
 		}
 	    }
-	    final MicroMod mm = new MicroMod();
-	    mm.loadModule(modFile);
-	    return mm;
-	} catch (final NullPointerException np) {
-	    return null;
 	} catch (final IOException io) {
-	    return null;
-	}
-    }
-
-    public static void playMusic(final int musicID) {
-	MusicManager.CURRENT_MUSIC = MusicManager.getMusic(MusicConstants.getMusicName(musicID));
-	if (MusicManager.CURRENT_MUSIC != null) {
-	    // Play the music
-	    MusicManager.CURRENT_MUSIC.playModule();
+	    DDRemix.logError(io);
 	}
     }
 
     public static void stopMusic() {
-	if (MusicManager.CURRENT_MUSIC != null) {
-	    // Stop the music
-	    try {
-		MusicManager.CURRENT_MUSIC.stopModule();
-	    } catch (final BufferUnderflowException bue) {
-		// Ignore
-	    } catch (final NullPointerException np) {
-		// Ignore
-	    } catch (final Throwable t) {
-		DDRemix.logError(t);
-	    }
-	}
+	DianeMusicPlayer.stopPlaying();
     }
 
     public static boolean isMusicPlaying() {
-	if (MusicManager.CURRENT_MUSIC != null) {
-	    if (MusicManager.CURRENT_MUSIC.isPlayThreadAlive()) {
-		return true;
-	    }
-	}
-	return false;
+	return DianeMusicPlayer.isPlaying();
     }
 }

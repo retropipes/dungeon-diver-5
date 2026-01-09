@@ -10,9 +10,7 @@ import java.io.IOException;
 import org.retropipes.diane.fileio.XDataReader;
 import org.retropipes.diane.fileio.XDataWriter;
 
-import com.puttysoftware.llds.CloneableObject;
-
-public class MazeNote extends CloneableObject {
+public class MazeNote {
     // Fields
     private String contents;
 
@@ -28,13 +26,6 @@ public class MazeNote extends CloneableObject {
 
     public void setContents(final String newContents) {
 	this.contents = newContents;
-    }
-
-    @Override
-    public MazeNote clone() {
-	final MazeNote copy = (MazeNote) super.clone();
-	copy.contents = this.contents;
-	return copy;
     }
 
     static MazeNote readNote(final XDataReader reader) throws IOException {

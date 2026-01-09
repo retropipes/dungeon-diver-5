@@ -25,9 +25,8 @@ import com.puttysoftware.ddremix.resourcemanagers.BattleImageManager;
 import com.puttysoftware.ddremix.resourcemanagers.ObjectImageConstants;
 import com.puttysoftware.ddremix.resourcemanagers.SoundConstants;
 import com.puttysoftware.ddremix.resourcemanagers.SoundManager;
-import com.puttysoftware.llds.CloneableObject;
 
-public abstract class AbstractMazeObject extends CloneableObject implements RandomGenerationRule {
+public abstract class AbstractMazeObject implements RandomGenerationRule {
     // Properties
     private boolean solid;
     private boolean friction;

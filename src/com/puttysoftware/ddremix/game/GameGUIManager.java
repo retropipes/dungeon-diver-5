@@ -21,10 +21,10 @@ import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 import org.retropipes.diane.asset.image.BufferedImageIcon;
+import org.retropipes.diane.drawgrid.DrawGrid;
 
 import com.puttysoftware.ddremix.Application;
 import com.puttysoftware.ddremix.DDRemix;
-import com.puttysoftware.ddremix.DrawGrid;
 import com.puttysoftware.ddremix.maze.Maze;
 import com.puttysoftware.ddremix.maze.MazeConstants;
 import com.puttysoftware.ddremix.maze.MazeManager;

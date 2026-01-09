@@ -11,6 +11,7 @@ import java.util.Arrays;
 import org.retropipes.diane.fileio.XDataReader;
 import org.retropipes.diane.fileio.XDataWriter;
 import org.retropipes.diane.random.RandomRange;
+import org.retropipes.diane.storage.FlagStorage;
 
 import com.puttysoftware.ddremix.Application;
 import com.puttysoftware.ddremix.DDRemix;
@@ -26,13 +27,12 @@ import com.puttysoftware.ddremix.maze.objects.WallOn;
 import com.puttysoftware.ddremix.maze.utilities.DirectionResolver;
 import com.puttysoftware.ddremix.maze.utilities.MazeObjectList;
 import com.puttysoftware.ddremix.maze.utilities.RandomGenerationRule;
-import com.puttysoftware.llds.LowLevelFlagDataStore;
 
 final class LayeredDungeon implements Cloneable {
     // Properties
     private LowLevelAMODataStore data;
     private LowLevelAMODataStore savedDungeonState;
-    private LowLevelFlagDataStore visionData;
+    private FlagStorage visionData;
     private final LowLevelNoteDataStore noteData;
     private final int[] playerStartData;
     private final int[] playerLocationData;
@@ -59,7 +59,7 @@ final class LayeredDungeon implements Cloneable {
     public LayeredDungeon(final int rows, final int cols, final int floors) {
 	this.data = new LowLevelAMODataStore(cols, rows, floors, MazeConstants.LAYER_COUNT);
 	this.savedDungeonState = new LowLevelAMODataStore(cols, rows, floors, MazeConstants.LAYER_COUNT);
-	this.visionData = new LowLevelFlagDataStore(cols, rows, floors);
+	this.visionData = new FlagStorage(cols, rows, floors);
 	this.noteData = new LowLevelNoteDataStore(cols, rows, floors);
 	this.playerStartData = new int[3];
 	Arrays.fill(this.playerStartData, -1);
@@ -173,7 +173,7 @@ final class LayeredDungeon implements Cloneable {
     public LayeredDungeon clone() {
 	final LayeredDungeon copy = new LayeredDungeon(this.getRows(), this.getColumns(), this.getFloors());
 	copy.data = this.data.clone();
-	copy.visionData = (LowLevelFlagDataStore) this.visionData.clone();
+	copy.visionData = new FlagStorage(this.visionData);
 	copy.savedDungeonState = this.savedDungeonState.clone();
 	System.arraycopy(this.playerStartData, 0, copy.playerStartData, 0, this.playerStartData.length);
 	System.arraycopy(this.findResult, 0, copy.findResult, 0, this.findResult.length);

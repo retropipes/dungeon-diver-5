@@ -5,7 +5,8 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import com.puttysoftware.ddremix.DrawGrid;
+import org.retropipes.diane.drawgrid.DrawGrid;
+
 import com.puttysoftware.ddremix.prefs.PreferencesManager;
 import com.puttysoftware.ddremix.resourcemanagers.ImageTransformer;
 
